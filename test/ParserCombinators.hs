@@ -30,14 +30,14 @@ assertParse expected (Right answer) =
 testDigitParser :: Spec
 testDigitParser = it "digit parser" $ do
     -- Change parser with the correct parser to use
-    let parser = failParser "digit parser" :: P.Parser Char
+    let parser = P.anyChar :: P.Parser Char
     let result = P.parseOnly parser "5"
     assertParse '5' result
 
 testDigitsParser :: Spec
 testDigitsParser = it "sequence of digits parser" $ do
     -- Change parser with the correct parser to use
-    let parser = failParser "sequence of digits parser" :: P.Parser String
+    let parser = pack P.string "54321" :: P.Parser String
     let result = P.parseOnly parser "54321"
     assertParse "54321" result
 
